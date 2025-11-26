@@ -5,6 +5,7 @@ import {
     mantineHtmlProps,
     createTheme,
 } from "@mantine/core"
+import { Notifications } from "@mantine/notifications"
 import type { Metadata } from "next"
 import { navy, green } from "@/lib/theme"
 import { montserrat, poppins, raleway, lato } from "@/lib/theme"
@@ -41,7 +42,10 @@ export default function RootLayout({
                 className={`${montserrat.variable} ${poppins.variable} ${raleway.variable} ${lato.variable}`}
             >
                 <SessionProviderWrapper>
-                    <MantineProvider theme={theme}>{children}</MantineProvider>
+                    <MantineProvider theme={theme}>
+                        <Notifications />
+                        {children}
+                    </MantineProvider>
                 </SessionProviderWrapper>
             </body>
         </html>
