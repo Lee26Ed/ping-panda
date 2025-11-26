@@ -3,6 +3,9 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
+# Copy PUBLIC environment file for the build step
+COPY .env.production .env.production
+
 # Copy package files
 COPY package*.json ./
 
