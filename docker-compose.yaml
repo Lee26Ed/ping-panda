@@ -1,0 +1,13 @@
+services:
+  nextjs-app:
+    build: .
+    container_name: ping-panda-app
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET}
+      NEXTAUTH_URL: ${NEXTAUTH_URL}
+      PORT: 3000
+      HOSTNAME: "0.0.0.0"
+    restart: unless-stopped
