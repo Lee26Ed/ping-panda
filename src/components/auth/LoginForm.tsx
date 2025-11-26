@@ -7,6 +7,7 @@ import {
     LoadingOverlay,
     Paper,
     PasswordInput,
+    Stack,
     Text,
     TextInput,
     Title,
@@ -18,6 +19,7 @@ import { getSession, signIn } from "next-auth/react"
 import { notifications } from "@mantine/notifications"
 import { useDisclosure } from "@mantine/hooks"
 import { AppError, BadRequestError } from "@/lib/errors"
+import Image from "next/image"
 
 export function LoginForm() {
     const router = useRouter()
@@ -69,7 +71,6 @@ export function LoginForm() {
                 })
             }
         } catch (error) {
-            close()
             notifications.show({
                 title: "Login Failed",
                 message:
@@ -90,9 +91,17 @@ export function LoginForm() {
                     overlayProps={{ radius: "sm", blur: 2 }}
                 />
                 <form onSubmit={form.onSubmit(handleSubmit)}>
-                    <Title order={2} className={classes.title}>
-                        Welcome back to Ping Panda!
-                    </Title>
+                    <Stack align='center'>
+                        <Image
+                            src='/ping_panda.png'
+                            alt='logo'
+                            width={50}
+                            height={50}
+                        />
+                        <Title order={2} className={classes.title}>
+                            Welcome back to Ping Panda!
+                        </Title>
+                    </Stack>
 
                     <TextInput
                         label='Email address'

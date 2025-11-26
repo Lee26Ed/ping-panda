@@ -1,3 +1,4 @@
+import { LoginClient } from "@/app/actions/auth/LoginClient"
 import type { NextAuthOptions, SessionStrategy } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
@@ -21,13 +22,10 @@ export const authOptions: NextAuthOptions = {
                 // can just be a function call that handles auth in the actions folder
                 try {
                     // the user object must have an "id" field.
-                    const user = {
-                        id: "12345",
-                        email: "lee.14.panti@gmail.com",
-                        password: "one2enter",
-                        role: "admin",
-                        name: "Lee Panti",
-                    }
+                    const user = await LoginClient(
+                        credentials.email,
+                        credentials.password
+                    )
 
                     return user
                 } catch (error) {
